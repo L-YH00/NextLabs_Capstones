@@ -1,0 +1,57 @@
+package com.company.nextlabs.policygen.excel;
+
+import com.company.nextlabs.policygen.Excel.ExcelReaderImpl;
+import com.company.nextlabs.policygen.config.ExcelConfig;
+import com.company.nextlabs.policygen.exception.ExcelProcessingException;
+import com.company.nextlabs.policygen.exception.ValidationException;
+import com.company.nextlabs.policygen.Excel.model.AttributeData;
+import com.company.nextlabs.policygen.Excel.model.PolicyData;
+import com.company.nextlabs.policygen.Excel.model.RuleData;
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class ExcelReaderImplTest {
+
+    public static void main(String[] args) {
+        // 1️⃣ Create ExcelConfig manually
+        ExcelConfig config = new ExcelConfig();
+        config.setTemplateValidation(true);
+        config.setSupportedFormats(List.of("xlsx", "xls"));
+        config.setTemplatesPath("src/test/resources/test-data/");
+
+        // 2️⃣ Create ExcelReaderImpl
+        ExcelReaderImpl reader = new ExcelReaderImpl(config);
+
+        // 3️⃣ Load test Excel file
+        File testFile = new File("src/test/resources/test-data/valid-policies.xlsx");
+
+        try {
+            // 4️⃣ Validate structure
+            reader.validateStructure(testFile);
+            System.out.println("Excel structure validation passed.");
+
+            // 5️⃣ Read policies
+            List<PolicyData> policies = reader.readPolicies(testFile);
+            System.out.println("Policies read:");
+            policies.forEach(System.out::println);
+
+            // 6️⃣ Read rules
+            List<RuleData> rules = reader.readRules(testFile);
+            System.out.println("Rules read:");
+            rules.forEach(System.out::println);
+
+            // 7️⃣ Read attributes
+            List<AttributeData> attributes = reader.readAttributes(testFile);
+            System.out.println("Attributes read:");
+            attributes.forEach(System.out::println);
+
+        } catch (ExcelProcessingException | ValidationException e) {
+            e.printStackTrace();
+            System.err.println("Error reading Excel: " + e.getMessage());
+        }
+    }
+}

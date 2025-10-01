@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN" monitorInterval="60">
+
+    <Properties>
+
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+
+        <Property name="LOG_DIR">logs</Property>
+
+    </Properties>
+
+
+    <Appenders>
+
+        <!-- Console Appender -->
+
+        <Console name="Console" target="SYSTEM_OUT">
+
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+
+        </Console>
+
+
+        <!-- File Appender for Application Logs -->
+
+        <RollingFile name="AppLogFile" fileName="${LOG_DIR}/policy_generator.log"
+
+                     filePattern="${LOG_DIR}/policy_generator-%d{yyyy-MM-dd}-%i.log.gz">
+
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+
+            <Policies>
+
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+
+                <SizeBasedTriggeringPolicy size="10MB"/>
+
+            </Policies>
+
+            <DefaultRolloverStrategy max="30" compressionLevel="6">
+
+                <Delete basePath="${LOG_DIR}" maxDepth="1">
+
+                    <IfFileName glob="policy_generator-*.log.gz"/>
+
+                    <IfLastModified age="30d"/>
+
+                </Delete>
+
+            </DefaultRolloverStrategy>
+
+        </RollingFile>
+
+
+        <!-- Separate File for API Interactions -->
+
+        <RollingFile name="ApiLogFile" fileName="${LOG_DIR}/nextlabs_api.log"
+
+                     filePattern="${LOG_DIR}/nextlabs_api-%d{yyyy-MM-dd}-%i.log.gz">
+
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+
+            <Policies>
+
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+
+                <SizeBasedTriggeringPolicy size="10MB"/>
+
+            </Policies>
+
+            <DefaultRolloverStrategy max="15" compressionLevel="6">
+
+                <Delete basePath="${LOG_DIR}" maxDepth="1">
+
+                    <IfFileName glob="nextlabs_api-*.log.gz"/>
+
+                    <IfLastModified age="15d"/>
+
+                </Delete>
+
+            </DefaultRolloverStrategy>
+
+        </RollingFile>
+
+
+        <!-- Error File for ERROR and FATAL levels -->
+
+        <RollingFile name="ErrorLogFile" fileName="${LOG_DIR}/errors.log"
+
+                     filePattern="${LOG_DIR}/errors-%d{yyyy-MM-dd}-%i.log.gz">
+
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+
+            <Policies>
+
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+
+                <SizeBasedTriggeringPolicy size="5MB"/>
+
+            </Policies>
+
+            <DefaultRolloverStrategy max="90" compressionLevel="6"/>
+
+        </RollingFile>
+
+
+        <!-- Async Wrapper for Performance -->
+
+        <AsyncRoot includeLocation="false">
+
+            <AppenderRef ref="Console"/>
+
+            <AppenderRef ref="AppLogFile"/>
+
+            <AppenderRef ref="ErrorLogFile"/>
+
+        </AsyncRoot>
+
+    </Appenders>
+
+
+    <Loggers>
+
+        <!-- Application Package Loggers -->
+
+        <Logger name="com.company.nextlabs.policygen" level="INFO" additivity="false">
+
+            <AppenderRef ref="AppLogFile"/>
+
+            <AppenderRef ref="Console"/>
+
+            <AppenderRef ref="ErrorLogFile"/>
+
+        </Logger>
+
+
+        <!-- NextLabs API Client Logger -->
+
+        <Logger name="com.company.nextlabs.policygen.nextlabs" level="DEBUG" additivity="false">
+
+            <AppenderRef ref="ApiLogFile"/>
+
+            <AppenderRef ref="ErrorLogFile"/>
+
+        </Logger>
+
+
+        <!-- Excel Processing Logger -->
+
+        <Logger name="com.company.nextlabs.policygen.excel" level="DEBUG" additivity="false">
+
+            <AppenderRef ref="AppLogFile"/>
+
+            <AppenderRef ref="ErrorLogFile"/>
+
+        </Logger>
+
+
+        <!-- Third-party Library Loggers -->
+
+        <Logger name="org.apache.poi" level="WARN" additivity="false">
+
+            <AppenderRef ref="AppLogFile"/>
+
+        </Logger>
+
+
+        <Logger name="okhttp3" level="INFO" additivity="false">
+
+            <AppenderRef ref="ApiLogFile"/>
+
+        </Logger>
+
+
+        <!-- Root Logger -->
+
+        <Root level="INFO">
+
+            <AppenderRef ref="Console"/>
+
+            <AppenderRef ref="AppLogFile"/>
+
+            <AppenderRef ref="ErrorLogFile"/>
+
+        </Root>
+
+    </Loggers>
+
+</Configuration>
+

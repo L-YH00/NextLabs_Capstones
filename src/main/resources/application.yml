@@ -1,0 +1,44 @@
+app:
+  nextlabs:
+    base_url: "https://pap.company.com/api"
+    username: "${NEXTLABS_USERNAME:admin}"
+    password: "${NEXTLABS_PASSWORD:password}"
+    timeout: 30
+    retry_attempts: 3
+#    auth_type: "oidc"
+
+  excel:
+    template_validation: true
+    supported_formats: [".xlsx", ".xls"]
+    max_file_size: "100MB"
+    templates_path: "classpath:templates/excel/"
+
+#  processing:
+#    batch_size: 100
+#    parallel_processing: true
+#    thread_pool_size: 4
+#    dry_run: false
+#    backup_policies: true
+#
+#  logging:
+#    level: "INFO"
+#    file: "logs/policy_generator.log"
+#    max_file_size: "10MB"
+#    retention_days: 30
+#    console_output: true
+#    async_logging: true
+#
+#  reporting:
+#    output_format: ["HTML", "CSV"]
+#    output_directory: "reports/"
+#    include_validation_details: true
+
+# Java-specific configurations
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

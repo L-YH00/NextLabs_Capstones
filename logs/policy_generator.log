@@ -1,0 +1,8 @@
+2025-10-01 09:52:08.749 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2025-10-01 09:52:08.791 [main] INFO  com.company.nextlabs.policygen.PolicyGeneratorApplication - Starting PolicyGeneratorApplication using Java 24.0.2 on MITRE with PID 14852 (C:\Users\ylioh\IdeaProjects\CapstoneProject\build\classes\java\main started by ylioh in C:\Users\ylioh\IdeaProjects\CapstoneProject)
+2025-10-01 09:52:08.792 [main] INFO  com.company.nextlabs.policygen.PolicyGeneratorApplication - No active profile set, falling back to 1 default profile: "default"
+2025-10-01 09:52:09.299 [main] INFO  com.company.nextlabs.policygen.PolicyGeneratorApplication - Started PolicyGeneratorApplication in 0.83 seconds (JVM running for 1.681)
+2025-10-01 09:56:49.626 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2025-10-01 09:56:49.651 [main] INFO  com.company.nextlabs.policygen.PolicyGeneratorApplication - Starting PolicyGeneratorApplication using Java 24.0.2 on MITRE with PID 18252 (C:\Users\ylioh\IdeaProjects\CapstoneProject\build\classes\java\main started by ylioh in C:\Users\ylioh\IdeaProjects\CapstoneProject)
+2025-10-01 09:56:49.652 [main] INFO  com.company.nextlabs.policygen.PolicyGeneratorApplication - No active profile set, falling back to 1 default profile: "default"
+2025-10-01 09:56:50.077 [main] INFO  com.company.nextlabs.policygen.PolicyGeneratorApplication - Started PolicyGeneratorApplication in 0.68 seconds (JVM running for 1.319)
