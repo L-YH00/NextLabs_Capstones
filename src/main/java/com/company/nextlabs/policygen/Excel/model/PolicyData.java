@@ -11,56 +11,42 @@ public class PolicyData {
     private String effectiveTo;
 
     // Getters and Setters
-    public String getPolicyId() {
-        return policyId;
+    @Override
+    public String toString() {
+        return "PolicyData{" +
+                "policyId='" + policyId + '\'' +
+                ", policyName='" + policyName + '\'' +
+                ", description='" + Description + '\'' +
+                ", policyType='" + PolicyType + '\'' +
+                ", status='" + status + '\'' +
+                ", effectiveFrom='" + effectiveFrom + '\'' +
+                ", effectiveTo='" + effectiveTo + '\'' +
+                '}';
     }
 
     public void setPolicyId(String policyId) {
         this.policyId = policyId;
     }
 
-    public String getPolicyName() {
-        return policyName;
-    }
-
     public void setPolicyName(String policyName) {
         this.policyName = policyName;
-    }
-
-    public String getDescription() {
-        return Description;
     }
 
     public void setDescription(String description) {
         this.Description = description;
     }
 
-    public String getPolicyType() {
-        return PolicyType;
-    }
-
     public void setPolicyType(String policyType) {
         this.PolicyType = policyType;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getEffectiveFrom() {
-        return effectiveFrom;
-    }
-
     public void setEffectiveFrom(String effectiveFrom) {
         this.effectiveFrom = effectiveFrom;
-    }
-
-    public String getEffectiveTo() {
-        return effectiveTo;
     }
 
     public void setEffectiveTo(String effectiveTo) {

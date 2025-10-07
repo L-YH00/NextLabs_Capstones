@@ -1,11 +1,18 @@
 app:
   nextlabs:
     base_url: "https://pap.company.com/api"
-    username: "${NEXTLABS_USERNAME:admin}"
-    password: "${NEXTLABS_PASSWORD:password}"
+    username: "administrator"
+    password: "12345Blue!"
     timeout: 30
     retry_attempts: 3
-#    auth_type: "oidc"
+    auth_type: "oidc"
+
+    # OIDC configuration
+    oidc:
+      token_url: "https://yhaocc01w19.qapf1.qalab01.nextlabs.com:443/cas/oidc/accessToken"
+      grant_type: "password"
+      client_id: "ControlCenterOIDCClient"
+      insecure_ssl: true
 
   excel:
     template_validation: true

@@ -31,6 +31,7 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
+    implementation("org.springframework.boot:spring-boot-starter-web")
 
     implementation("org.apache.poi:poi:5.2.3")
     implementation("org.apache.poi:poi-ooxml:5.2.3")
@@ -80,12 +81,10 @@ tasks.named<JacocoReport>("jacocoTestReport") {
     }
 
     classDirectories.setFrom(
-        fileTree("${layout.buildDirectory}/classes/java/main") {
-            exclude("**/SomeClassToExclude.class") // Optional
-        }
+        files(layout.buildDirectory.dir("classes/java/main"))
     )
     sourceDirectories.setFrom(files("src/main/java"))
-    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/test.exec"))
+    executionData.setFrom(fileTree(layout.buildDirectory.dir("jacoco")).include("test.exec"))
 }
 
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {

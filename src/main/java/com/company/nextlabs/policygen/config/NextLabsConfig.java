@@ -13,7 +13,49 @@ public class NextLabsConfig {
     private String password;
     private int timeout = 30;
     private int retryAttempts = 3;
+    private String authType;
 
+    private Oidc oidc = new Oidc();
+
+    // --- Nested OIDC config ---
+    public static class Oidc {
+        private String tokenUrl;
+        private String grantType;
+        private String clientId;
+        private boolean insecureSsl;
+
+        public String getTokenUrl() {
+            return tokenUrl;
+        }
+
+        public void setTokenUrl(String tokenUrl) {
+            this.tokenUrl = tokenUrl;
+        }
+
+        public String getGrantType() {
+            return grantType;
+        }
+
+        public void setGrantType(String grantType) {
+            this.grantType = grantType;
+        }
+
+        public String getClientId() {
+            return clientId;
+        }
+
+        public void setClientId(String clientId) {
+            this.clientId = clientId;
+        }
+
+        public boolean isInsecureSsl() {
+            return insecureSsl;
+        }
+
+        public void setInsecureSsl(boolean insecureSsl) {
+            this.insecureSsl = insecureSsl;
+        }
+    }
     // Getters and setters
     public String getBaseUrl() {
         return baseUrl;
@@ -54,4 +96,13 @@ public class NextLabsConfig {
     public void setRetryAttempts(int retryAttempts) {
         this.retryAttempts = retryAttempts;
     }
+
+    public String getAuthType() { return authType; }
+
+    public void setAuthType(String authType) { this.authType = authType; }
+
+    public Oidc getOidc() { return oidc; }
+
+    public void setOidc(Oidc oidc) { this.oidc = oidc; }
+
 }
