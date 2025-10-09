@@ -12,7 +12,7 @@ app:
       token_url: "https://yhaocc01w19.qapf1.qalab01.nextlabs.com:443/cas/oidc/accessToken"
       grant_type: "password"
       client_id: "ControlCenterOIDCClient"
-      insecure_ssl: true
+      insecure_ssl: true #flag here to enable/disable validation of hostname
 
   excel:
     template_validation: true

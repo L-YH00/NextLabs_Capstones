@@ -37,11 +37,9 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:5.2.3")
 
     // HTTP Client
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
     // JSON Processing
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2")
 
     // Logging
     implementation("org.slf4j:slf4j-api:1.7.36")
